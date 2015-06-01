@@ -1,16 +1,13 @@
-var mosca = require('mosca')
+var mosca = require('mosca');
 
-var moscaSettings = {
-  port: 1883
-};
+var moscaSettings = { port:1883 };
 
 var server = new mosca.Server(moscaSettings);
-server.on('ready', setup);
 
-server.on('clientConnected', function(client) {
-  console.log('client connected', client.id);     
+server.on('ready', function () {
+    console.log('Mosca server is up and running')
 });
 
-function setup() {
-	console.log('Mosca server is up and running')
-}
+server.on('clientConnected', function(client) {
+    console.log('Client connected', client.id);     
+});
